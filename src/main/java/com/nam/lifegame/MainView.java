@@ -23,6 +23,7 @@ public class MainView extends VBox
     private Affine affine;
     private Simulation simulation;
     private Simulation initialSimulation;
+    private Simulator simulator;
     private int drawMode = Simulation.ALIVE;
     private int applicationState = EDITING;
 
@@ -176,10 +177,16 @@ public class MainView extends VBox
         if (applicationState == SIMULATING)
         {
             this.simulation = Simulation.copy(this.initialSimulation);
+            this.simulator = new Simulator(this, this.simulation);
         }
 
         this.applicationState = applicationState;
 
         System.out.println("Application State: " + this.applicationState);
+    }
+
+    public Simulator getSimulator()
+    {
+        return simulator;
     }
 }
