@@ -14,26 +14,21 @@ import javafx.scene.transform.NonInvertibleTransformException;
 
 public class MainView extends VBox
 {
-    private Button stepButton;
     private Canvas canvas;
     private Affine affine;
     private Simulation simulation;
-    private int drawMode = 1;
+    private int drawMode = Simulation.ALIVE;
 
     public MainView()
     {
-        this.stepButton = new Button("Step");
-        this.stepButton.setOnAction(actionEvent -> {
-            simulation.step();
-            draw();
-        });
-
         this.canvas = new Canvas(1000, 640);
         this.canvas.setOnMousePressed(this::handleDraw);
         this.canvas.setOnMouseDragged(this::handleDraw);
         this.setOnKeyPressed(this::onKeyPressed);
 
-        this.getChildren().addAll(this.stepButton, this.canvas);
+        Toolbar toolbar = new Toolbar(this);
+
+        this.getChildren().addAll(toolbar, this.canvas);
 
         this.affine = new Affine();
         this.affine.appendScale(200 / 10f, 200 / 10f);
@@ -45,12 +40,12 @@ public class MainView extends VBox
     {
         if (keyEvent.getCode() == KeyCode.D)
         {
-            this.drawMode = 1;
+            this.drawMode = Simulation.ALIVE;
             System.out.println("Draw mode");
         }
         else if (keyEvent.getCode() == KeyCode.E)
         {
-            this.drawMode = 0;
+            this.drawMode = Simulation.DEAD;
             System.out.println("Erase mode");
         }
     }
@@ -91,7 +86,7 @@ public class MainView extends VBox
         {
             for (int y = 0; y < this.simulation.height; y++)
             {
-                if (this.simulation.getState(x, y) == 1)
+                if (this.simulation.getState(x, y) == Simulation.ALIVE)
                 {
                     g.fillRect(x, y, 1, 1);
                 }
@@ -109,5 +104,15 @@ public class MainView extends VBox
         {
             g.strokeLine(0, y, 50, y);
         }
+    }
+
+    public Simulation getSimulation()
+    {
+        return this.simulation;
+    }
+
+    public void setDrawMode(int newDrawMode)
+    {
+        this.drawMode = newDrawMode;
     }
 }

@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 public class App extends Application
 {
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage)
+    {
+        Label label = new Label("Game of Life");
         MainView mainView = new MainView();
         Scene scene = new Scene(mainView, 840, 680);
         stage.setScene(scene);
