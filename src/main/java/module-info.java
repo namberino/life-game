@@ -5,4 +5,5 @@ module com.nam.lifegame {
 
     opens com.nam.lifegame to javafx.fxml;
     exports com.nam.lifegame;
+    exports com.nam.lifegame.model;
 }

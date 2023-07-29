@@ -1,125 +1,38 @@
 package com.nam.lifegame;
 
+import com.nam.lifegame.model.Board;
+import com.nam.lifegame.model.CellState;
+import com.nam.lifegame.model.SimulationRule;
+
 public class Simulation
 {
-    public static int DEAD = 0;
-    public static int ALIVE = 1;
+    private Board simulationBoard;
+    private SimulationRule simulationRule;
 
-    int width;
-    int height;
-    int[][] board;
-
-    public Simulation(int width, int height)
+    public Simulation(Board simulationBoard, SimulationRule simulationRule)
     {
-        this.width = width;
-        this.height = height;
-        this.board = new int[width][height];
-    }
-
-    public static Simulation copy(Simulation simulation)
-    {
-        Simulation copy = new Simulation(simulation.width, simulation.height);
-
-        for (int y = 0; y < simulation.height; y++)
-        {
-            for (int x = 0; x < simulation.width; x++)
-            {
-                copy.setState(x, y, simulation.getState(x, y));
-            }
-        }
-
-        return copy;
-    }
-
-    public void setAlive(int x, int y)
-    {
-        this.board[x][y] = ALIVE;
-    }
-
-    public void setDead(int x, int y)
-    {
-        this.board[x][y] = DEAD;
-    }
-
-    public void setState(int x, int y, int state)
-    {
-        if (x < 0 || x >= width)
-        {
-            return;
-        }
-
-        if (y < 0 || y >= height)
-        {
-            return;
-        }
-
-        this.board[x][y] = state;
-    }
-
-    public int countAliveNeighbours(int x, int y)
-    {
-        int count = 0;
-
-        count += getState(x - 1, y - 1);
-        count += getState(x, y - 1);
-        count += getState(x + 1, y - 1);
-
-        count += getState(x - 1, y);
-        count += getState(x + 1, y);
-
-        count += getState(x - 1, y + 1);
-        count += getState(x, y + 1);
-        count += getState(x + 1, y + 1);
-
-        return count;
-    }
-
-    public int getState(int x, int y)
-    {
-        if (x < 0 || x >= width)
-        {
-            return DEAD;
-        }
-
-        if (y < 0 || y >= height)
-        {
-            return DEAD;
-        }
-
-        return this.board[x][y];
+        this.simulationBoard = simulationBoard;
+        this.simulationRule = simulationRule;
     }
 
     public void step()
     {
-        int[][] newBoard = new int[width][height];
+        Board nextState = simulationBoard.copy();
 
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < simulationBoard.getWidth(); y++)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < simulationBoard.getHeight(); x++)
             {
-                int aliveNeighbours = countAliveNeighbours(x, y);
-
-                if (getState(x, y) == 1)
-                {
-                    if (aliveNeighbours < 2 || aliveNeighbours > 3)
-                    {
-                        newBoard[x][y] = DEAD;
-                    }
-                    else if (aliveNeighbours == 2 || aliveNeighbours == 3)
-                    {
-                        newBoard[x][y] = ALIVE;
-                    }
-                }
-                else
-                {
-                    if (aliveNeighbours == 3)
-                    {
-                        newBoard[x][y] = ALIVE;
-                    }
-                }
+                CellState newState = simulationRule.getNextState(x, y, simulationBoard);
+                nextState.setState(x, y, newState);
             }
         }
 
-        this.board = newBoard;
+        this.simulationBoard = nextState;
+    }
+
+    public Board getBoard()
+    {
+        return simulationBoard;
     }
 }
