@@ -13,27 +13,6 @@ public class Simulation
         this.board = new int[width][height];
     }
 
-    public void printBoard()
-    {
-        System.out.println("---");
-        for (int y = 0; y < height; y++)
-        {
-            String line = "|";
-            for (int x = 0; x < width; x++)
-            {
-                if (this.board[x][y] == 0)
-                {
-                    line += ".";
-                } else {
-                    line += "*";
-                }
-            }
-            line += "|";
-            System.out.println(line);
-        }
-        System.out.println("---\n");
-    }
-
     public void setAlive(int x, int y)
     {
         this.board[x][y] = 1;
@@ -42,6 +21,21 @@ public class Simulation
     public void setDead(int x, int y)
     {
         this.board[x][y] = 0;
+    }
+
+    public void setState(int x, int y, int state)
+    {
+        if (x < 0 || x >= width)
+        {
+            return;
+        }
+
+        if (y < 0 || y >= height)
+        {
+            return;
+        }
+
+        this.board[x][y] = state;
     }
 
     public int countAliveNeighbours(int x, int y)
