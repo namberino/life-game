@@ -22,11 +22,11 @@ public class MainView extends VBox
     public static final int EDITING = 0;
     public static final int SIMULATING = 1;
 
-    private InfoBar infoBar;
-    private Canvas canvas;
-    private Affine affine;
+    private final InfoBar infoBar;
+    private final Canvas canvas;
+    private final Affine affine;
     private Simulation simulation;
-    private Board initialBoard;
+    private final Board initialBoard;
     private CellState drawMode = CellState.ALIVE;
     private int applicationState = EDITING;
 
@@ -68,11 +68,13 @@ public class MainView extends VBox
         if (keyEvent.getCode() == KeyCode.D)
         {
             this.drawMode = CellState.ALIVE;
+            infoBar.setDrawMode(drawMode);
             System.out.println("Draw mode");
         }
         else if (keyEvent.getCode() == KeyCode.E)
         {
             this.drawMode = CellState.DEAD;
+            infoBar.setDrawMode(drawMode);
             System.out.println("Erase mode");
         }
     }
@@ -198,7 +200,7 @@ public class MainView extends VBox
         g.setTransform(this.affine);
 
         g.setFill(Color.LIGHTGRAY);
-        g.fillRect(0, 0, 1200, 800);
+        g.fillRect(0, 0, 600, 600);
 
         if (this.applicationState == EDITING)
         {
@@ -213,12 +215,12 @@ public class MainView extends VBox
         g.setLineWidth(0.05);
         for (int x = 0; x <= this.initialBoard.getWidth(); x++)
         {
-            g.strokeLine(x, 0, x, 50);
+            g.strokeLine(x, 0, x, 100);
         }
 
         for (int y = 0; y <= this.initialBoard.getHeight(); y++)
         {
-            g.strokeLine(0, y, 50, y);
+            g.strokeLine(0, y, 100, y);
         }
     }
 

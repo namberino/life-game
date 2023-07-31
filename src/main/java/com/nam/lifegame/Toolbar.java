@@ -7,7 +7,7 @@ import javafx.scene.control.ToolBar;
 
 public class Toolbar extends ToolBar
 {
-    private MainView mainView;
+    private final MainView mainView;
     private Simulator simulator;
 
     public Toolbar(MainView mainView)

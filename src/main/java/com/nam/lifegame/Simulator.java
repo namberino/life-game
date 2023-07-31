@@ -7,9 +7,9 @@ import javafx.util.Duration;
 
 public class Simulator
 {
-    private Timeline timeline;
-    private MainView mainView;
-    private Simulation simulation;
+    private final Timeline timeline;
+    private final MainView mainView;
+    private final Simulation simulation;
 
     public Simulator(MainView mainView, Simulation simulation)
     {

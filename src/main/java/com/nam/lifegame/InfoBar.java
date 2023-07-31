@@ -8,11 +8,8 @@ import javafx.scene.layout.Priority;
 
 public class InfoBar extends HBox
 {
-    private static String drawModeFormat = "Draw Mode: %s";
-    private static String cursorPosFormat = "Cursor: (%d, %d)";
-
-    private Label cursor;
-    private Label editingTool;
+    private final Label cursor;
+    private final Label editingTool;
 
     public InfoBar()
     {
@@ -29,6 +26,7 @@ public class InfoBar extends HBox
 
     public void setDrawMode(CellState drawMode)
     {
+        String drawModeFormat = "Draw Mode: %s";
         String drawModeString;
         if (drawMode == CellState.ALIVE)
         {
@@ -44,6 +42,7 @@ public class InfoBar extends HBox
 
     public void setCursorPosition(int x, int y)
     {
+        String cursorPosFormat = "Cursor: (%d, %d)";
         this.cursor.setText(String.format(cursorPosFormat, x, y));
     }
 }
