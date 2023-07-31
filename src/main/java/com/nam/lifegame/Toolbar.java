@@ -58,8 +58,6 @@ public class Toolbar extends ToolBar
 
     private void handleStep(ActionEvent actionEvent)
     {
-        System.out.println("Step pressed");
-
         switchToSimulatingState();
 
         this.mainView.getSimulation().step();
@@ -68,13 +66,11 @@ public class Toolbar extends ToolBar
 
     private void handleErase(ActionEvent actionEvent)
     {
-        System.out.println("Erase pressed");
         this.mainView.setDrawMode(CellState.DEAD);
     }
 
     private void handleDraw(ActionEvent actionEvent)
     {
-        System.out.println("Draw pressed");
         this.mainView.setDrawMode(CellState.ALIVE);
     }
 

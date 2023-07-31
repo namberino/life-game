@@ -69,13 +69,11 @@ public class MainView extends VBox
         {
             this.drawMode = CellState.ALIVE;
             infoBar.setDrawMode(drawMode);
-            System.out.println("Draw mode");
         }
         else if (keyEvent.getCode() == KeyCode.E)
         {
             this.drawMode = CellState.DEAD;
             infoBar.setDrawMode(drawMode);
-            System.out.println("Erase mode");
         }
     }
 
@@ -90,8 +88,6 @@ public class MainView extends VBox
 
         int simX = (int) simCoord.getX();
         int simY = (int) simCoord.getY();
-
-        System.out.println(simX + ", " + simY);
 
         this.initialBoard.setState(simX, simY, drawMode);
         draw();
@@ -183,8 +179,6 @@ public class MainView extends VBox
         }
 
         this.applicationState = applicationState;
-
-        System.out.println("Application State: " + this.applicationState);
     }
 
     public int getApplicationState()
