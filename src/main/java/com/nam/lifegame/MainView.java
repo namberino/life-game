@@ -190,4 +190,50 @@ public class MainView extends VBox
     {
         return applicationState;
     }
+
+    public void resetBoard()
+    {
+        resetSim(this.initialBoard);
+
+        GraphicsContext g = this.canvas.getGraphicsContext2D();
+        g.setTransform(this.affine);
+
+        g.setFill(Color.LIGHTGRAY);
+        g.fillRect(0, 0, 1200, 800);
+
+        if (this.applicationState == EDITING)
+        {
+            drawSimulation(this.initialBoard);
+        }
+        else
+        {
+            drawSimulation(this.simulation.getBoard());
+        }
+
+        g.setStroke(Color.GRAY);
+        g.setLineWidth(0.05);
+        for (int x = 0; x <= this.initialBoard.getWidth(); x++)
+        {
+            g.strokeLine(x, 0, x, 50);
+        }
+
+        for (int y = 0; y <= this.initialBoard.getHeight(); y++)
+        {
+            g.strokeLine(0, y, 50, y);
+        }
+    }
+
+    private void resetSim(Board simulationToDraw)
+    {
+        for (int x = 0; x < simulationToDraw.getWidth(); x++)
+        {
+            for (int y = 0; y < simulationToDraw.getHeight(); y++)
+            {
+                if (simulationToDraw.getState(x, y) == CellState.ALIVE)
+                {
+                    simulationToDraw.setState(x, y, CellState.DEAD);
+                }
+            }
+        }
+    }
 }

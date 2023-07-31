@@ -25,8 +25,17 @@ public class Toolbar extends ToolBar
         start.setOnAction(this::handleStart);
         Button stop = new Button("Stop");
         stop.setOnAction(this::handleStop);
+        Button clear = new Button("Clear");
+        clear.setOnAction(this::handleClear);
 
-        this.getItems().addAll(draw, erase, reset, start, stop, step);
+        this.getItems().addAll(draw, erase, reset, start, stop, step, clear);
+    }
+
+    private void handleClear(ActionEvent actionEvent)
+    {
+        this.mainView.setApplicationState(MainView.EDITING);
+        this.simulator = null;
+        this.mainView.resetBoard();
     }
 
     private void handleStop(ActionEvent actionEvent)
