@@ -13,7 +13,7 @@ public class StandardRule implements SimulationRule
             {
                 return CellState.DEAD;
             }
-            else if (aliveNeighbours == 2 || aliveNeighbours == 3)
+            else
             {
                 return CellState.ALIVE;
             }

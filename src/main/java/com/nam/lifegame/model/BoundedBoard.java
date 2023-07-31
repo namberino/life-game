@@ -2,9 +2,9 @@ package com.nam.lifegame.model;
 
 public class BoundedBoard implements Board
 {
-    private int width;
-    private int height;
-    private CellState[][] board;
+    private final int width;
+    private final int height;
+    private final CellState[][] board;
 
     public BoundedBoard(int width, int height)
     {
