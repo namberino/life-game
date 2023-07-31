@@ -12,7 +12,7 @@ public class App extends Application
     {
         Label label = new Label("Game of Life");
         MainView mainView = new MainView();
-        Scene scene = new Scene(mainView, 840, 680);
+        Scene scene = new Scene(mainView, 1050, 690);
         stage.setScene(scene);
         stage.show();
 

@@ -32,7 +32,7 @@ public class MainView extends VBox
 
     public MainView()
     {
-        this.canvas = new Canvas(1000, 620);
+        this.canvas = new Canvas(1200, 631);
         this.canvas.setOnMousePressed(this::handleDraw);
         this.canvas.setOnMouseDragged(this::handleDraw);
         this.canvas.setOnMouseMoved(this::handleMoved);
@@ -52,7 +52,7 @@ public class MainView extends VBox
         this.getChildren().addAll(toolbar, this.canvas, spacer, infoBar);
 
         this.affine = new Affine();
-        this.affine.appendScale(200 / 10f, 200 / 10f);
+        this.affine.appendScale(150 / 10f, 150 / 10f);
 
         this.initialBoard = new BoundedBoard(100, 100);
     }
@@ -102,8 +102,7 @@ public class MainView extends VBox
 
         try
         {
-            Point2D simCoord = this.affine.inverseTransform(mouseX, mouseY);
-            return simCoord;
+            return this.affine.inverseTransform(mouseX, mouseY);
         }
         catch (NonInvertibleTransformException e)
         {
@@ -117,7 +116,7 @@ public class MainView extends VBox
         g.setTransform(this.affine);
 
         g.setFill(Color.LIGHTGRAY);
-        g.fillRect(0, 0, 1200, 800);
+        g.fillRect(0, 0, 600, 600);
 
         if (this.applicationState == EDITING)
         {
@@ -132,12 +131,12 @@ public class MainView extends VBox
         g.setLineWidth(0.05);
         for (int x = 0; x <= this.initialBoard.getWidth(); x++)
         {
-            g.strokeLine(x, 0, x, 50);
+            g.strokeLine(x, 0, x, 100);
         }
 
         for (int y = 0; y <= this.initialBoard.getHeight(); y++)
         {
-            g.strokeLine(0, y, 50, y);
+            g.strokeLine(0, y, 100, y);
         }
     }
 
