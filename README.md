@@ -2,4 +2,4 @@
 
 ![Game of Life pic](gol-pic.png)
 
-Remade in Java and Java Swing
+Remade in JavaFX
