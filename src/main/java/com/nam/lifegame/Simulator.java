@@ -1,3 +1,7 @@
+/*
+This class handles the simulation start, stop and step along with redrawing the board
+ */
+
 package com.nam.lifegame;
 
 import javafx.animation.KeyFrame;

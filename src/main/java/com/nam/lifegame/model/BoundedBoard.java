@@ -1,3 +1,7 @@
+/*
+This is the simulation board class, this is where all the magic happens
+ */
+
 package com.nam.lifegame.model;
 
 public class BoundedBoard implements Board

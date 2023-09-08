@@ -1,3 +1,5 @@
+// helper class
+
 package com.nam.lifegame;
 
 import com.nam.lifegame.model.Board;

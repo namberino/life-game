@@ -1,3 +1,7 @@
+/*
+This handles the toolbar and all the utility buttons
+ */
+
 package com.nam.lifegame;
 
 import com.nam.lifegame.model.CellState;

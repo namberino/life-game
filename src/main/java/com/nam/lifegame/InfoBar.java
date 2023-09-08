@@ -1,3 +1,7 @@
+/*
+A class to display the bottom information bar
+ */
+
 package com.nam.lifegame;
 
 import com.nam.lifegame.model.CellState;

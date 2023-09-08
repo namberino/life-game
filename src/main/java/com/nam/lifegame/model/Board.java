@@ -1,3 +1,7 @@
+/*
+A helper for the BoundedBoard class
+ */
+
 package com.nam.lifegame.model;
 
 public interface Board

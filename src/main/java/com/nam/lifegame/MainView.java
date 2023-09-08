@@ -1,3 +1,7 @@
+/*
+This class displays the app and all the contents inside the app
+ */
+
 package com.nam.lifegame;
 
 import com.nam.lifegame.model.Board;
